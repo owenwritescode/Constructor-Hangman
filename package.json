@@ -1,0 +1,24 @@
+{
+  "name": "constructor-hangman",
+  "version": "1.0.0",
+  "description": "Hangman-style game built using constructor functions.",
+  "main": "main.js",
+  "dependencies": {
+    "prompt": "^1.0.0",
+    "require": "^2.4.20"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/owenwritescode/Constructor-Hangman.git"
+  },
+  "author": "Owen Geoghegan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/owenwritescode/Constructor-Hangman/issues"
+  },
+  "homepage": "https://github.com/owenwritescode/Constructor-Hangman#readme"
+}
