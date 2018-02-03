@@ -2,15 +2,14 @@ var myWord = require('./word.js');
 var prompt = require('prompt');
 
 console.log("Hangman Game");
-console.log("Guess a letter based on the clue");
-console.log("glhf");
+console.log("Guess an ice cream flavor.");
 console.log("Time to begin");
 console.log("----------------------------");
 
 prompt.start();
 
 myGame = {
-  solutionBank: ['', '', '', '', '', '', '', '', ''],
+  solutionBank: ['Vanilla', 'Chocolate', 'Strawberry', 'Neopolitan', 'Sherbet', 'Rocky Road', 'Praline', 'Mint Chocolate Chip', 'Cookie Dough'],
   wins: 0,
   triesRemaining: 12,
   chosenWord: null,

@@ -5,8 +5,8 @@ function myWord(target) {
   this.lets = [];
   this.found = false;
 
-  this.getLet = function() {
-    for var(i = 0; i < this.length; i++) {
+  this.getLetter = function() {
+    for (var i = 0; i < this.length; i++) {
       this.lets.push( new letter(this.target[i]));
     }
   };
