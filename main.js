@@ -1,60 +1,65 @@
-var myWord = require('./word.js');
+var Word = require('./word.js');
 var prompt = require('prompt');
 
-console.log("Hangman Game");
-console.log("Guess an ice cream flavor.");
-console.log("Time to begin");
-console.log("----------------------------");
-
+console.log("Hangman-style Node.js");
+console.log("Guess a letter of the name of a vehicle make i.e: Honda)");
+console.log("Starting game");
+console.log("-----------------------------");
 prompt.start();
 
-myGame = {
-  solutionBank: ['Vanilla', 'Chocolate', 'Strawberry', 'Neopolitan', 'Sherbet', 'Rocky Road', 'Praline', 'Mint Chocolate Chip', 'Cookie Dough'],
-  wins: 0,
-  triesRemaining: 12,
-  chosenWord: null,
 
-  beginGame: function(word) {
-    this.resetTries();
-    this.chosenWord = new myWord(this.solutionBank[Math.floor(Math.random()* this.solutionBank.length)]);
-    this.chosenWord.getLetter();
-    this.alertUser();
-  },
 
-  resetTries: function(){
-    this.triesRemaining = 12;
-  },
+game = {
+ 	wordBank: ['ford', 'volkswagen', 'toyota', 'porsche', 'bmw', 'audi', 'mercedes'],
+ 	wordsWon: 0,
+ 	guessesRemaining: 10,
+ 	currentWrd: null,
 
-  alertUser: function(){
-    var me = this;
-    prompt.get(['letterGuessed'], function(err, result){
-      console.log("You guessed: " + result.letterGuessed);
-      var guessCount = me.chosenWord.testLetter(result.letterGuessed);
+ 	startGame: function (wrd) {
+ 		this.resetGuesses();
+ 		this.currentWrd = new Word(this.wordBank[Math.floor(Math.random()* this.wordBank.length)]);
+ 		this.currentWrd.getLet();
+ 		this.promptUser();
+ 	},
 
-      if(guessCount == 0) {
-        console.log("FAIL");
-        me.triesRemaining--;
-      } else {
-        console.log("CORRECT GUESSING");
-        if(me.chosenWord.findWord()){
-          console.log("WINNER WINNER");
-          console.log("--------------------");
-          return;
-        }
-      }
+ 	resetGuesses: function(){
+ 		this.guessesRemaining = 10;
+ 	},
 
-      console.log("Tries remaining: " + me.triesRemaining);
-      console.log("---------------------");
-      if((me.triesRemaining > 0) && (me.chosenWord.found == false)){
-        me.alertUser();
-      }
-      else if(me.triesRemaining == 0) {
-        console.log("Gave over. The correct word was ", me.chosenWord.target);
-      } else {
-        console.log(me.chosenWord.renderWord());
-      }
-    });
-  }
+ 	promptUser: function(){
+ 		var self = this;
+ 		prompt.get(['guessLet'], function(err, result){
+ 			console.log("You guessed: " + result.guessLet);
+ 			var manyGuessed = self.currentWrd.checkLetter(result.guessLet);
+
+ 			if(manyGuessed ==0) {
+ 				console.log("WRONG");
+ 				self.guessesRemaining--;
+
+ 			} else {
+ 				console.log("CORRECT");
+ 					if(self.currentWrd.findWord()){
+ 						console.log("You won!");
+ 						console.log("-------------------");
+ 						return;
+ 					}
+ 			}
+
+ 			console.log("Guesses remaining: " + self.guessesRemaining);
+ 			console.log("-------------------");
+ 			if((self.guessesRemaining > 0) && (self.currentWrd.found == false)){
+ 				self.promptUser();
+ 			}
+ 			else if(self.guessesRemaining ==0){
+ 				console.log("Game over. Correct Word ", self.currentWrd.target);
+ 			} else {
+ 				console.log(self.currentWrd.wordRender());
+ 			}
+ 		});
+
+ 	}
+
+
 };
 
-myGame.beginGame();
+game.startGame();

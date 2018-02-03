@@ -1,3 +1,6 @@
-exports.myGame = {
-  solutionBank: ['Vanilla', 'Chocolate', 'Strawberry', 'Neopolitan', 'Sherbet', 'Rocky Road', 'Praline', 'Mint Chocolate Chip', 'Cookie Dough']
+// word selection is random
+
+exports.game = {
+
+wordBank: ['ford', 'volkswagen', 'toyota', 'porsche', 'bmw', 'audi', 'mercedes'];
 };

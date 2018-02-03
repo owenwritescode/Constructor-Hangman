@@ -1,42 +1,43 @@
 var letter = require('./letter.js');
 
-function myWord(target) {
-  this.target = target;
-  this.lets = [];
-  this.found = false;
+function Word(target) {
+	this.target = target;
+	this.lets = [];
+	this.found = false;
 
-  this.getLetter = function() {
-    for (var i = 0; i < this.length; i++) {
-      this.lets.push( new letter(this.target[i]));
-    }
-  };
+	this.getLet = function() {
+		for (var i=0; i < this.target.length; i++) {
+			this.lets.push( new letter(this.target[i]));
+		}
+	};
 
-  this.findWord = function() {
-    this.found = this.lets.every(function(currentLetter) {
-      return currentLetter.appear;
-    });
-    return this.found;
-  };
+	this.findWord = function() {
+		this.found = this.lets.every(function(currLett) {
+			return currLett.appear;
+		});
+		return this.found;
+	};
 
-  this.testLetter = function(letterGuessed) {
-    var toBeReturned = 0;
+	this.checkLetter = function(guessLet) {
+		var toReturn = 0;
 
-    for(var i = 0; i < this.lets.length; i++) {
-      if(this.lets[i].charac == letterGuessed) {
-        this.lets[i].appear = true;
-        toBeReturned++;
-      }
-    }
-    return toBeReturned;
-  };
+		for (var i = 0; i < this.lets.length; i++) {
+			if (this.lets[i].charac == guessLet){
+				this.lets[i].appear = true;
+				toReturn++;
+			}
+		}
+		return toReturn;
+	};
 
-  this.renderWord = function() {
-    var string = '';
-    for(var i = 0; i < this.lets.length; i++) {
-      string += this.lets[i].renderLetter();
-    }
-    return string;
-  };
+	this.wordRender = function() {
+		var string = '';
+		for (var i=0; i < this.lets.length; i++){
+			string += this.lets[i].letterRender();
+		}
+		return string;
+	};
+
 }
 
-module.exports = myWord;
+module.exports = Word;
