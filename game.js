@@ -1,4 +1,4 @@
-// word selection is random
+
 
 exports.game = {
 
